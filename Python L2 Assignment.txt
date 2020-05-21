@@ -1,0 +1,350 @@
+#1
+
+import os
+
+directory = "Mathnew"
+parent_directory = "C:\\Users\\user\\Documents\\PythonL2\\"
+
+path = os.path.join(parent_directory,directory)
+
+try:
+    os.mkdir(path)
+    print("Directory [] created".format(directory))
+except OSError as error:
+    print(error)
+
+c = open("C:\\Users\\user\\Documents\\PythonL2\\Mathnew\\__init__.py","w+")
+f = open("C:\\Users\\user\\Documents\\PythonL2\\Mathnew\\sqroot.py","w+")
+g = open("C:\\Users\\user\\Documents\\PythonL2\\Mathnew\\addition.py","w+")
+h = open("C:\\Users\\user\\Documents\\PythonL2\\Mathnew\\subtraction.py","w+")
+i = open("C:\\Users\\user\\Documents\\PythonL2\\Mathnew\\multiplication.py","w+")
+j = open("C:\\Users\\user\\Documents\\PythonL2\\Mathnew\\division.py","w+")
+
+f.write("""def sqroot(*args):
+    l = []
+    for ele in args:
+        l.append(ele**0.5)
+    return l""")
+g.write("""def addition(*args):
+    sum = 0
+    for ele in args:
+        sum+=ele
+    return sum""")
+h.write("""def subtraction(*args):
+    res = args[0]
+    for ele in args[1:]:
+        res-=ele
+    return res""")
+i.write("""def multiplication(*args):
+    res = 1
+    for ele in args:
+        res*=ele
+    return res""")
+j.write("""def division(*args):
+    res = args[0]
+    try:
+        for ele in args[1:]:
+            res/=ele
+    except ZeroDivisionError as e:
+        print("Cannot divide a number by zero")
+    return res""")
+
+c.close()
+f.close()
+g.close()
+h.close()
+i.close()
+j.close()
+
+os.chdir(r"C:\Users\user\Documents\PythonL2")
+from Mathnew import sqroot
+print(sqroot.sqroot(4,9,16,25))
+
+from Mathnew import addition
+print(addition.addition(1,2,3,4,5))
+
+from Mathnew import subtraction
+print(subtraction.subtraction(1,2,3,4,5))
+
+from Mathnew import multiplication
+print(multiplication.multiplication(1,2,3,4,5))
+
+from Mathnew import division
+print(division.division(1,2,3,4,5))
+
+
+#2
+import re
+
+email='From abc.xyz@pqr.com Mon Dec 29 01:12:15 2016'
+
+email_pattern = "\s\w{1,}[.]\w{1,}@{1}"
+res = re.search(email_pattern,email)
+print(res.group())
+
+domain_name = "@{1}[a-zA-z]{1,}[.][a-zA-z]{1,}"
+res1 = re.search(domain_name,email)
+print(res1.group())
+
+
+time = "[0-24]{2}:[0-59]{2}:[0-59]{2}"
+res2 = re.search(time,email)
+print(res2.group())
+
+
+#3
+
+class Mymath:
+    @staticmethod
+    def sqroot(*args):
+        l = []
+        for ele in args:
+            l.append(ele**0.5)
+        return l
+    
+    @staticmethod
+    def addition(*args):
+        sum = 0
+        for ele in args:
+            sum+=ele
+        return sum
+    
+    @staticmethod
+    def subtraction(*args):
+        res = args[0]
+        for ele in args[1:]:
+            res-=ele
+        return res
+    
+    @staticmethod
+    def multiplication(*args):
+        res = 1
+        for ele in args:
+            res*=ele
+        return res
+    
+    @staticmethod
+    def division(*args):
+        res = args[0]
+        try:
+            for ele in args[1:]:
+                res/=ele
+        except ZeroDivisionError as e:
+            print("Cannot divide a number by zero")
+        return res
+
+calculation = Mymath()
+print(calculation.sqroot(4),calculation.addition(1,2,3,4),calculation.subtraction(1,2,3,4),calculation.multiplication(1,2,3,4),calculation.division(1,2,3,4))
+
+
+#4
+
+class Mymath:
+    def __init__(self):
+        pass
+    
+    def sqroot(self,*args):
+        self.args = args
+        l = []
+        for ele in self.args:
+            l.append(ele**0.5)
+        return l
+    
+    
+    def addition(self,*args):
+        self.args = args
+        sum = 0
+        for ele in self.args:
+            sum+=ele
+        return sum
+    
+    
+    def subtraction(self,*args):
+        self.args = args
+        res = self.args[0]
+        for ele in self.args[1:]:
+            res-=ele
+        return res
+    
+    
+    def multiplication(self,*args):
+        self.args = args
+        res = 1
+        for ele in self.args:
+            res*=ele
+        return res
+    
+    
+    def division(self,*args):
+        self.args = args
+        res = self.args[0]
+        try:
+            for ele in self.args[1:]:
+                res/=ele
+        except ZeroDivisionError as e:
+            print("Cannot divide a number by zero")
+        return res
+
+calculation = Mymath()
+print(calculation.sqroot(4),calculation.addition(1,2,3,4),calculation.subtraction(1,2,3,4),calculation.multiplication(1,2,3,4),calculation.division(1,2,3,4))
+
+
+#5
+
+class Sqroot:
+    def __init__(self):
+        pass
+    def sqroot(self,*args):
+        self.args = args
+        l = []
+        for ele in self.args:
+            l.append(ele**0.5)
+        return l
+class Addition:
+    def __init__(self):
+        pass
+    def addition(self,*args):
+        self.args = args
+        sum = 0
+        for ele in self.args:
+            sum+=ele
+        return sum
+class Subtraction:
+    def __init__(self):
+        pass
+    def subtraction(self,*args):
+        self.args = args
+        res = self.args[0]
+        for ele in self.args[1:]:
+            res-=ele
+        return res
+class Multiplication:
+    def __init__(self):
+        pass
+    def multiplication(self,*args):
+        self.args = args
+        res = 1
+        for ele in self.args:
+            res*=ele
+        return res
+class Division:
+    def __init__(self):
+        pass
+    def division(self,*args):
+        self.args = args
+        res = self.args[0]
+        try:
+            for ele in self.args[1:]:
+                res/=ele
+        except ZeroDivisionError as e:
+            print("Cannot divide a number by zero")
+        return res
+
+class mathnew(Sqroot,Addition,Subtraction,Multiplication,Division):
+    def __init__(self):
+        super()
+
+cal = mathnew()
+print(calculation.sqroot(4),calculation.addition(1,2,3,4),calculation.subtraction(1,2,3,4),calculation.multiplication(1,2,3,4),calculation.division(1,2,3,4))
+
+
+#6
+
+class A:
+    def __init__(self,a):
+        self.a = a
+    def __add__(self,o):
+        if len(self.a) != len(o.a):
+            print("Matrix addition not possible!")
+            return
+        for i in range(len(self.a)):
+            if len(self.a[i]) != len(o.a[i]):
+                print("Matrix addition not possible!")
+                return
+
+        rows,cols = len(self.a),len(self.a)
+        k = [[0 for i in range(cols)]for j in range(rows)]
+        for i in range(rows):
+            for j in range(cols):
+                k[i][j] = self.a[i][j]+o.a[i][j]
+        return(k)
+
+l1 = A([[12,7,3],[4,5,6],[7,8,9]])
+l2 = A([[5,8,1],[6,7,3],[4,5,9]])
+
+print(l1+l2)
+
+    
+l3 = [[12,7,3],[4,5,6],[7,8,9]]
+l4 = [[5,8,1],[6,7,3],[4,5,9]]
+print(l3+l4)
+
+
+#7
+
+class B:
+    def __init__(self,a):
+        self.a = a
+    def __gt__(self,o):
+        if(len(self.a)>len(o.a)):
+            return True
+        else:
+            return False
+str1 = B("aaaaa")
+str2 = B("AAAAAA")
+
+print(str1>str2)
+
+str3 = "aaaaa"
+str4 = "AAAAAA"
+print(str3>str4)
+
+#9
+import math
+class Circle:
+    def __init__(self,radius):
+        self.radius = radius
+    
+    def circumferance(self):
+        return (2*math.pi*self.radius)
+    def area(self):
+        return (math.pi*self.radius**2)
+
+circle = Circle(4)
+print("Area and Circumference of the circle with radius {} is {} and {} respectively".format(circle.radius,circle.area(),circle.circumferance()))
+
+
+#8
+
+import math
+class Circle:
+    radius = 4
+    
+    def circumferance(self):
+        return (2*math.pi*Circle.radius)
+    def area(self):
+        return (math.pi*Circle.radius**2)
+
+circle = Circle()
+print("Area and Circumference of the circle with radius {} is {} and {} respectively".format(circle.radius,circle.area(),circle.circumferance()))
+
+
+#10
+
+class first:
+    def method1():
+        pass
+class second(first):
+    def method1():
+        pass
+class third(first):
+    def method1():
+        pass
+class fourth(second,third):
+    def method1():
+        pass
+
+print(fourth.mro())
+print(third.mro())
+print(second.mro())
+print(first.mro())
